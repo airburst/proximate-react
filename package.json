@@ -1,0 +1,22 @@
+{
+  "name": "proximate",
+  "version": "1.0.0",
+  "description": "Find your friends on any platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u0016\u0016https://github.com/airburst/proximate-react.git"
+  },
+  "keywords": [
+    "Proximate"
+  ],
+  "author": "Mark Fairhurst",
+  "license": "ISC",
+  "dependencies": {
+    "google-map-react": "^0.16.3",
+    "react": "^15.3.0"
+  }
+}
