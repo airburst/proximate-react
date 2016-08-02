@@ -18,9 +18,11 @@
   "author": "Mark Fairhurst",
   "license": "ISC",
   "dependencies": {
+    "material-ui": "^0.15.2",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
-    "react-pure-render": "^1.0.2"
+    "react-pure-render": "^1.0.2",
+    "react-tap-event-plugin": "^1.0.0"
   },
   "devDependencies": {
     "babel-loader": "^6.2.4",

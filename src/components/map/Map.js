@@ -88,12 +88,8 @@ export class Map extends React.Component {
     }
 
     render() {
-        const style = {
-            width: '100vw',
-            height: '100vh'
-        };
         return (
-            <div ref='map' style={style}>
+            <div ref='map' id="map">
                 Loading map...
                 {this.renderChildren() }
             </div>

@@ -15,7 +15,7 @@ export class Container extends React.Component {
             selectedPlace: {}
         });
     }
-  
+
     onMarkerClick(props, marker, e) {
         this.setState({
             selectedPlace: props,
@@ -25,31 +25,25 @@ export class Container extends React.Component {
     }
 
     render() {
-        const style = {
-            width: '100vw',
-            height: '100vh'
-        }
         if (!this.props.loaded) {
             return <div>Loading...</div>
         }
         return (
-            <div style={style}>
-                <Map google={this.props.google}>
-                    <Marker
-                        onClick={this.onMarkerClick.bind(this) }
-                        name={'Home'}
-                        position={{ lat: 51.417163, lng: -2.210025 }} />
+            <Map google={this.props.google}>
+                <Marker
+                    onClick={this.onMarkerClick.bind(this) }
+                    name={'Home'}
+                    position={{ lat: 51.417163, lng: -2.210025 }} />
 
-                    <InfoWindow
-                        marker={this.state.activeMarker}
-                        visible={this.state.showingInfoWindow}
-                        onClose={this.onInfoWindowClose}>
-                        <div>
-                            <h1>{this.state.selectedPlace.name}</h1>
-                        </div>
-                    </InfoWindow>
-                </Map>
-            </div>
+                <InfoWindow
+                    marker={this.state.activeMarker}
+                    visible={this.state.showingInfoWindow}
+                    onClose={this.onInfoWindowClose}>
+                    <div>
+                        <h1>{this.state.selectedPlace.name}</h1>
+                    </div>
+                </InfoWindow>
+            </Map>
         )
     }
 
