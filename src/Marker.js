@@ -1,6 +1,6 @@
-import React, { PropTypes as T } from 'react'
+import React, { PropTypes as T, Component } from 'react'
 
-import { camelize } from '../lib/String'
+import { camelize } from './lib/String'
 const evtNames = ['click', 'mouseover', 'recenter'];
 
 const wrappedPromise = function () {
@@ -16,7 +16,7 @@ const wrappedPromise = function () {
     return wrappedPromise;
 }
 
-export class Marker extends React.Component {
+export class Marker extends Component {
 
     componentDidMount() {
         this.markerPromise = wrappedPromise();
