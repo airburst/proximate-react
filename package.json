@@ -18,9 +18,9 @@
   "author": "Mark Fairhurst",
   "license": "ISC",
   "dependencies": {
-    "google-map-react": "^0.16.3",
     "react": "^15.3.0",
-    "react-dom": "^15.3.0"
+    "react-dom": "^15.3.0",
+    "react-pure-render": "^1.0.2"
   },
   "devDependencies": {
     "babel-loader": "^6.2.4",
