@@ -29,21 +29,23 @@ export class Container extends React.Component {
             return <div>Loading...</div>
         }
         return (
-            <Map google={this.props.google}>
-                <Marker
-                    onClick={this.onMarkerClick.bind(this) }
-                    name={'Home'}
-                    position={{ lat: 51.417163, lng: -2.210025 }} />
+            <div id="map-container" ref="container">
+                <Map google={this.props.google}>
+                    <Marker
+                        onClick={this.onMarkerClick.bind(this) }
+                        name={'Home'}
+                        position={{ lat: 51.417163, lng: -2.210025 }} />
 
-                <InfoWindow
-                    marker={this.state.activeMarker}
-                    visible={this.state.showingInfoWindow}
-                    onClose={this.onInfoWindowClose}>
-                    <div>
-                        <h1>{this.state.selectedPlace.name}</h1>
-                    </div>
-                </InfoWindow>
-            </Map>
+                    <InfoWindow
+                        marker={this.state.activeMarker}
+                        visible={this.state.showingInfoWindow}
+                        onClose={this.onInfoWindowClose}>
+                        <div>
+                            <h1>{this.state.selectedPlace.name}</h1>
+                        </div>
+                    </InfoWindow>
+                </Map>
+            </div>
         )
     }
 
