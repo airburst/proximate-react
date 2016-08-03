@@ -87,10 +87,6 @@ export class Map extends React.Component {
         }
     }
 
-    // getBodyHeight() {
-    //     return document.getElementById('body').clientHeight - 50;
-    // }
-
     render() {
         return (
             <div ref='map' id="map">
