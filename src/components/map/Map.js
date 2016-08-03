@@ -87,7 +87,10 @@ export class Map extends React.Component {
             const center = new maps.LatLng(lat, lng);
             const mapConfig = Object.assign({}, {
                 center: center,
-                zoom: zoom
+                zoom: zoom,
+                zoomControlOptions: {
+                    position: maps.ControlPosition.RIGHT_TOP
+                }
             })
             this.map = new maps.Map(node, mapConfig);
 
