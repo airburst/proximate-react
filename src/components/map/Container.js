@@ -25,6 +25,7 @@ export class Container extends React.Component {
     }
 
     render() {
+        console.log('Container locations', this.props.locations)            //
         if (!this.props.loaded) {
             return <div>Loading...</div>
         }
