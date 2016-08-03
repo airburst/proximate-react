@@ -17,7 +17,7 @@ class Toolbar extends Component {
     }
     
     showContacts() {
-        console.log('Show or Hide Contacts')        //
+        console.log('Show or hide contacts')        //
     }
 
     render() {
