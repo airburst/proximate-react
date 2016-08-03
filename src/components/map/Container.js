@@ -39,9 +39,10 @@ export class Container extends React.Component {
                     color={l.color} />
             )
         });
+        let coords = locations.map((l) => { return l.position; });
         return (
             <div id="map-container" ref="container">
-                <Map google={this.props.google}>
+                <Map google={this.props.google} coords={coords}>
                     {markers}
                     <InfoWindow
                         marker={this.state.activeMarker}

@@ -99,28 +99,6 @@ Marker.defaultProps = {
 
 export default Marker
 
-// private scaleToFitNewMarker(marker: any) {
-//     this.bounds.extend(marker.getPosition());
-//     // Don't zoom too close if only one marker
-//     if (this.bounds.getNorthEast().equals(this.bounds.getSouthWest())) {
-//         var extendPoint1 = new window.google.maps.LatLng(this.bounds.getNorthEast().lat() + 0.005, this.bounds.getNorthEast().lng() + 0.005);
-//         var extendPoint2 = new window.google.maps.LatLng(this.bounds.getNorthEast().lat() - 0.005, this.bounds.getNorthEast().lng() - 0.005);
-//         this.bounds.extend(extendPoint1);
-//         this.bounds.extend(extendPoint2);
-//     }
-//     this.map.fitBounds(this.bounds);
-// }
-
-// private removeAllMarkers() {
-//     this.markers.forEach((m) => { m.setMap(null); });
-//     this.markers.clear();
-//     this.resetBounds();
-// }
-
-// private centreMe($event) {
-//     this.map.panTo(this.settings.myLocation.position);
-// }
-
 // private scaleToFit() {
 //     this.resetBounds();
 //     this.markers.forEach((m) => { this.scaleToFitNewMarker(m); });
