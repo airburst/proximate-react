@@ -35,14 +35,11 @@ export class Container extends React.Component {
                         onClick={this.onMarkerClick.bind(this) }
                         name={'Home'}
                         position={{ lat: 51.417163, lng: -2.210025 }} />
-
                     <InfoWindow
                         marker={this.state.activeMarker}
                         visible={this.state.showingInfoWindow}
                         onClose={this.onInfoWindowClose}>
-                        <div>
-                            <h1>{this.state.selectedPlace.name}</h1>
-                        </div>
+                        <div><h2>{this.state.selectedPlace.name}</h2></div>
                     </InfoWindow>
                 </Map>
             </div>

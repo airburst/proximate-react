@@ -8,6 +8,14 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
 
+    // Get locationId from localstorage
+
+    // Get stream of locations from Firebase and filter for my contacts
+
+    // Pass contacts collection to Container as a prop
+
+    // Need actions to update Firebase
+
     render() {
         injectTapEventPlugin();
 
