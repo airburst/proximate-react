@@ -1,6 +1,5 @@
 import React, {PropTypes, Component} from 'react';
 import ReactDOM from 'react-dom';
-import ReactFireMixin from 'reactfire';
 import moment from 'moment';
 import Container from './map/Container';
 import Toolbar from './Toolbar';
@@ -9,7 +8,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // class App extends Component {
 const App = React.createClass({
-    mixins: [ReactFireMixin],
 
     getInitialState: function () {
         return {
