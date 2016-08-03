@@ -36,7 +36,7 @@ export class Marker extends Component {
     }
 
     renderMarker() {
-        let { map, google, position, mapCenter } = this.props;
+        let { name, position, color, map, google, mapCenter } = this.props;
         if (!google) { return null }
 
         let pos = position || mapCenter;
@@ -48,8 +48,8 @@ export class Marker extends Component {
             fillColor: 'white',
             fillOpacity: 0.8,
             scale: 15,
-            strokeColor: 'blue',
-            strokeWeight: 2
+            strokeColor: this.props.color || 'blue',
+            strokeWeight: 4
         };
 
         const pref = {

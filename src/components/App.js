@@ -1,6 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import ReactDOM from 'react-dom';
 import ReactFireMixin from 'reactfire';
+import moment from 'moment';
 import Container from './map/Container';
 import Toolbar from './Toolbar';
 import ContactsList from './ContactsList';
@@ -10,30 +11,52 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 const App = React.createClass({
     mixins: [ReactFireMixin],
 
-    getInitialState: () => {
+    getInitialState: function () {
         return {
             firebaseRef: {},
-            locations: []
+            contacts: [],
+            me: {}
         };
     },
-
-    // Get locationId from localstorage
 
     // Get stream of locations from Firebase and filter for my contacts
     componentWillMount: function () {
         this.firebaseRef = firebase.database().ref('locations');
         this.firebaseRef.on('value', function (snapshot) {
-            let locations = [];
-            snapshot.forEach(function (childSnapshot) {
-                let location = childSnapshot.val();
-                location['key'] = childSnapshot.key;
-                locations.push(location);
+            let locations = [], me = {};
+            snapshot.forEach(function (l) {
+                let location = l.val();
+                location['key'] = l.key;
+                if (this.isMyLocationId(location)) { me = location; }
+                if (this.isLinkedToMyLocationId(location)) {        // && this.hasUpdatedInLastDay(l);
+                    locations.push(location);
+                }
             }.bind(this));
-
-            this.setState({
-                locations: locations
+            this.setState({ 
+                contacts: locations,
+                me: me
             });
         }.bind(this));
+    },
+
+    // testForNewUser(location) {
+    //   if ((location.$key === this.locationId) && (location.name === 'Me')) { this.newUser = true; }
+    // }
+
+    containsMyLocationId(location) {
+        return (this.isMyLocationId(location) || this.isLinkedToMyLocationId(location)) ? true : false;
+    },
+
+    isMyLocationId(location) {
+        return (location.key === this.props.locationId) ? true : false;
+    },
+
+    isLinkedToMyLocationId(location) {
+        return location.contacts && (location.contacts.indexOf(this.props.locationId) > -1) ? true : false;
+    },
+
+    hasUpdatedInLastDay(location) {
+        return (moment().diff(moment(location.updated), 'days') === 0);
     },
 
     componentWillUnmount: function () {
@@ -62,8 +85,8 @@ const App = React.createClass({
         return (
             <MuiThemeProvider>
                 <div role="main" id="main">
-                    <Container locations={this.state.locations}/>
-                    <ContactsList />
+                    <Container contacts={this.state.contacts} me={this.state.me}/>
+                    <ContactsList contacts={this.state.contacts} me={this.state.me}/>
                     <Toolbar />
                 </div>
             </MuiThemeProvider>
@@ -73,3 +96,13 @@ const App = React.createClass({
 });
 
 export default App;
+
+//  getLocationByKey(key: string): Promise<any> {
+//     let loc[] = [];
+//     return new Promise((resolve: any, reject: any) => {
+//       this.locations$.subscribe((l) => {
+//         let item = l[l.length - 1];
+//         if ((item !== undefined) && (item.$key === key)) { resolve(item); }
+//       }, reject);
+//     });
+//   }

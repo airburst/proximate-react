@@ -25,19 +25,20 @@ export class Container extends React.Component {
     }
 
     render() {
-        console.log('Container locations', this.props.locations)            //
-        let markers = this.props.locations.map((l) => {
+        let locations = [...this.props.contacts, this.props.me];
+        if ((!this.props.loaded) || ((locations.length === 1) && locations[0].key === undefined)) {
+            return <div>Loading...</div>
+        }
+        let markers = locations.map((l) => {
             return (
                 <Marker
                     key = {l.key}
                     onClick={this.onMarkerClick.bind(this) }
                     name={l.name}
-                    position={l.position} />
+                    position={l.position}
+                    color={l.color} />
             )
         });
-        if (!this.props.loaded) {
-            return <div>Loading...</div>
-        }
         return (
             <div id="map-container" ref="container">
                 <Map google={this.props.google}>
