@@ -26,7 +26,7 @@ const App = React.createClass({
             let locations = [];
             snapshot.forEach(function (childSnapshot) {
                 let location = childSnapshot.val();
-                location['.key'] = childSnapshot.key;
+                location['key'] = childSnapshot.key;
                 locations.push(location);
             }.bind(this));
 
