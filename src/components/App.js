@@ -45,7 +45,6 @@ const App = React.createClass({
     getGeoPosition: function (locationId) {
         this.props.geo.getLocation()
             .then((position) => {
-                console.log(locationId, position, this.props.newUser)                       //
                 this.setLocation({ lat: position.latitude, lng: position.longitude }, locationId);
             })
             .catch((error) => { console.log('Geo error', error); });
@@ -93,7 +92,6 @@ const App = React.createClass({
             let newLocation = { name: 'Me', position: position, color: 'blue', updated: timeStamp };
             let id = this.addLocation(newLocation);
             this.setLocationId(id);
-            // display form to capture name and color
         }
     },
 
@@ -120,8 +118,6 @@ const App = React.createClass({
     },
 
     updateNewUserDetails(details) {
-        
-        console.log('App: UpdateNewUserDetails', details)           //
         this.updateLocation(this.state.locationId, Object.assign(details, { updated: timeStamp }));
     },
 

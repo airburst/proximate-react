@@ -3,15 +3,25 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
-/**
- * Dialogs can be nested. This example opens a Date Picker from within a Dialog.
- */
+// TODO: no validation in form
+
+const items = [
+    <MenuItem key={1} value={'blue'} primaryText="Blue" />,
+    <MenuItem key={2} value={'red'} primaryText="Red" />,
+    <MenuItem key={3} value={'green'} primaryText="Green" />,
+    <MenuItem key={4} value={'black'} primaryText="Black" />,
+    <MenuItem key={5} value={'purple'} primaryText="Purple" />,
+    <MenuItem key={6} value={'orange'} primaryText="Orange" />
+];
+
 export default class NewUserDialog extends React.Component {
     state = {
         open: false,
         name: '',
-        color: ''
+        color: 'blue'
     };
 
     componentDidMount() {
@@ -29,8 +39,8 @@ export default class NewUserDialog extends React.Component {
         this.setState({ name: e.target.value });
     };
 
-    handleColorChange = (e) => {
-        this.setState({ color: e.target.value });
+    handleColorChange = (event, index, value) => {
+        this.setState({ color: value });
     };
 
     render() {
@@ -52,15 +62,19 @@ export default class NewUserDialog extends React.Component {
                     open={this.state.open}
                     onRequestClose={this.handleClose}
                     >
-                    <p>You seem like you're new to ProxiMate.  Please give us a few details.</p> 
+                    <p className="dialog-text">You seem like you're new to ProxiMate.  Please give us a few details.</p> 
                     <TextField
                         id="shortname"
                         floatingLabelText="Your Name"
                         onChange={this.handleNameChange} />
-                    <TextField
+                    <SelectField 
                         id="color"
-                        floatingLabelText="Colour"
-                        onChange={this.handleColorChange} />
+                        floatingLabelText="Choose a colour for your pin"
+                        floatingLabelFixed={true}
+                        value={this.state.color} 
+                        onChange={this.handleColorChange}>
+                        {items}
+                    </SelectField>
                 </Dialog>
             </div>
         );
