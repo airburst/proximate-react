@@ -13,10 +13,7 @@ const config = {
 };
 firebase.initializeApp(config);
 
-// Get location id from localStorage
-const locationId = window.localStorage.getItem('proximateLocationId');
-
 // Touch Tap Plugin
 injectTapEventPlugin();
 
-ReactDOM.render(<App locationId={locationId}/>, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));

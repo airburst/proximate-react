@@ -1,6 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
+import GeolocationService from '../geolocation';
 import Container from './map/Container';
 import Toolbar from './Toolbar';
 import ContactsList from './ContactsList';
@@ -8,6 +9,18 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // class App extends Component {
 const App = React.createClass({
+
+    propTypes: {
+        locationId: React.PropTypes.string,
+        geo: React.PropTypes.object
+    },
+
+    getDefaultProps() {
+        return {
+            locationId: window.localStorage.getItem('proximateLocationId'),
+            geo: new GeolocationService()
+        };
+    },
 
     getInitialState: function () {
         return {
@@ -19,6 +32,25 @@ const App = React.createClass({
 
     // Get stream of locations from Firebase and filter for my contacts
     componentWillMount: function () {
+        this.getDataFromFirebase();
+        this.getGeoPosition(this.props.locationId);
+    },
+
+    setLocationId(id) {
+        window.localStorage.setItem('proximateLocationId', id);
+    },
+
+    getGeoPosition: function (locationId) {
+        this.props.geo.getLocation()
+            .then((position) => { 
+                /*this.setLocation(position, locationId);*/ 
+                console.log(locationId, position)                       //
+                // 
+            })
+            .catch((error) => { console.log('Geo error', error); });
+    },
+
+    getDataFromFirebase: function () {
         this.firebaseRef = firebase.database().ref('locations');
         this.firebaseRef.on('value', function (snapshot) {
             let locations = [], me = {};
@@ -30,7 +62,7 @@ const App = React.createClass({
                     locations.push(location);
                 }
             }.bind(this));
-            this.setState({ 
+            this.setState({
                 contacts: locations,
                 me: me
             });
@@ -80,6 +112,7 @@ const App = React.createClass({
     // Pass contacts collection to Container as a prop
 
     render: function () {
+        console.log('Rendering App...')                             //
         return (
             <MuiThemeProvider>
                 <div role="main" id="main">
@@ -94,13 +127,3 @@ const App = React.createClass({
 });
 
 export default App;
-
-//  getLocationByKey(key: string): Promise<any> {
-//     let loc[] = [];
-//     return new Promise((resolve: any, reject: any) => {
-//       this.locations$.subscribe((l) => {
-//         let item = l[l.length - 1];
-//         if ((item !== undefined) && (item.$key === key)) { resolve(item); }
-//       }, reject);
-//     });
-//   }
