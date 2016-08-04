@@ -1,0 +1,114 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+#map-container {
+    display: flex;
+    height: 100%;
+    flex: 1;
+    background-color: #E5E3DF;
+}
+
+#map {
+    width: 100%;
+    height: 100vh;
+}
+
+.toolbar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 48px;
+    padding: 0;
+    background-color: white;
+}
+
+.contacts-container  {
+    position: absolute;
+    bottom: 48px;
+    width: 100%;
+    max-height: 145px;  /* 3 items plus 8px top padding plus 1px divider */
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.contacts-list {
+    padding: 0 !important;
+}
+
+.fill-space {
+  flex: 1 1 auto;
+}
+
+
+.contact-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    padding: 0;
+    margin: -8px 0;
+}
+
+.time {
+    color: #666;
+    margin: 0 20px;
+    font-size: 0.8em;
+}
+
+.label-success {
+    background-color: #5cb85c;
+}
+.label {
+    display: flex;
+    padding: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .2rem;
+    margin-left: 1rem;
+    min-width: 5rem;
+    height: 1.6rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove {
+    margin-left: 16px;
+    margin-right: -64px;
+    display: flex;
+    padding: 12px;
+    align-items: center;
+    background: red;
+    color: white;
+    height: 100%;
+    width: 48px;
+}
+
+.remove.show {
+    margin-right: -16px;
+}
+
+.remove,
+.remove.show {
+    transition: all 0.1s ease-in-out;
+}
+
+.dialog-text {
+    line-height: 1.8em;
+}
